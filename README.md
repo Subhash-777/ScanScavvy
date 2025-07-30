@@ -1,17 +1,29 @@
 
-# 🕵️ ScanScavvy
+# 🛒 ScanScavvy
 
-**ScanScavvy** is a mobile scavenger hunt app built with **React Native (Expo Go)** on the frontend and **Express.js (Node.js)** on the backend.  
-Currently, the backend is exposed worldwide using **ngrok**, so the API endpoint URL in `api.js` must be updated to match the ngrok address every time you restart the tunnel.
+**ScanScavvy** is a smart barcode scanner app built for the **Walmart Hackathon** using **React Native (Expo Go)** for the frontend and **Express.js (Node.js)** for the backend.  
+It leverages **ngrok** to expose the backend server globally for real-time mobile interaction.
+
+---
+
+## 💡 Project Idea
+
+The app was designed to enhance in-store and online shopping experiences by:
+- 📦 Scanning product barcodes
+- 📅 Displaying key product info: expiry date, manufacture date, and nutritional data (e.g., fat, protein composition)
+- 🤖 Recommending alternative products with a **similarity score**
+- 🗣️ Converting all product info into **speech** for accessibility
+- 🛍️ Adding products to a **cart** and calculating the **total cost**
 
 ---
 
 ## 🚀 Features
 
-- User-friendly React Native frontend working via **Expo Go**  
-- Express.js backend API for handling game logic  
-- Global access to backend via **ngrok** tunnel  
-- Token-based scavenger hunt challenges and responses  
+- 🔍 Real-time barcode scanning and product analysis
+- 🧠 Smart suggestions based on product similarity
+- 🗨️ Text-to-speech for accessibility
+- 🛒 Cart management with total price display
+- 🌐 Backend exposed globally via **ngrok**
 
 ---
 
@@ -21,7 +33,8 @@ Currently, the backend is exposed worldwide using **ngrok**, so the API endpoint
 |--------------|------------------------|
 | Frontend     | React Native + Expo Go |
 | Backend      | Node.js + Express.js   |
-| Network      | ngrok (exposes localhost globally) |
+| Networking   | ngrok (for global tunnel) |
+| Utilities    | Text-to-Speech, Similarity Logic |
 
 ---
 
@@ -58,20 +71,21 @@ cd ScanScavvy
     cd backend
     npm start
     ```
-2. In a separate terminal, launch ngrok to expose your local backend:
+2. In a separate terminal, launch ngrok:
     ```bash
     ngrok http 3000
     ```
-3. Copy the generated ngrok URL (e.g. `https://abcd1234.ngrok.io`) and update it in the frontend's `api.js` file as the `API_BASE_URL`.
+3. Copy the generated ngrok URL (e.g. `https://abcd1234.ngrok.io`)  
+   Update it in `frontend/api.js` as `API_BASE_URL`.
 
-### Frontend (React Native)
+### Frontend
 
-1. Open the project in your terminal:
+1. Start the Expo project:
     ```bash
     cd frontend
     expo start
     ```
-2. Launch Expo on your device or emulator. The app will use the updated API URL and communicate with your live backend.
+2. Scan the QR code with Expo Go app to launch on your device.
 
 ---
 
@@ -80,12 +94,12 @@ cd ScanScavvy
 ```
 ScanScavvy/
 ├── backend/
-│   ├── index.js           ← Express server entry point
-│   └── routes/            ← API routes (e.g. game logic)
+│   ├── index.js           ← Express backend entry point
+│   └── routes/            ← Product routes and logic
 ├── frontend/
-│   ├── App.js             ← Root of the React Native app
-│   ├── api.js             ← API URL configuration (ngrok URL goes here)
-│   └── components/        ← UI components
+│   ├── App.js             ← React Native main app
+│   ├── api.js             ← API endpoint (ngrok URL goes here)
+│   └── components/        ← UI elements
 ├── README.md
 └── .gitignore
 ```
@@ -94,47 +108,38 @@ ScanScavvy/
 
 ## 🧠 Updating API URL
 
-Every time you restart ngrok, follow these steps:
+Every time you restart ngrok:
 
-1. Run `ngrok http 3000` again.
-2. Copy the new public URL (starts with `https://`).
-3. Open `frontend/api.js` and replace the existing base URL with the new one.
-4. Save and restart your Expo app so it points at the updated backend.
-
----
-
-## 🔄 Future Improvements
-
-- 🔐 Use static backend hosting or cloud deployment (AWS, Heroku, Vercel) to eliminate ngrok overhead  
-- 🧾 Add environment variables to store API URL dynamically  
-- ⚙️ Implement authentication (JWT or OAuth) for secure player sessions  
-- ♻️ Persist user/game data in a database (MongoDB, PostgreSQL)  
-- 🧩 Enhance frontend UI with polished design and animations  
-
----
-
-## 👩‍💻 Usage Workflow
-
-1. Player installs the Expo Go app and scans the project QR code.
-2. App fetches scavenger hunt tasks from the Express API via the exposed ngrok URL.
-3. Player completes tasks, scans codes, or uploads results.
-4. API validates and logs progress, responding with updates.
-5. App displays real-time game status and feedback.
+1. Run `ngrok http 3000`
+2. Copy the new URL (e.g., `https://xyz.ngrok.io`)
+3. Paste it into `frontend/api.js`
+4. Restart the frontend app
 
 ---
 
 ## 🧪 Troubleshooting
 
-- ❌ *App can’t reach backend?*  
-  - Check that ngrok is running and you’re using the current URL in `api.js`.  
-  - Confirm backend server is active (`npm start` without errors).
+- ❌ *App not connecting to backend?*
+  - Check if ngrok is running and the new URL is correctly added.
+  - Ensure backend server is running.
 
-- 🛑 *Expo gives CORS or network errors?*  
-  - Consider adding CORS middleware in Express (e.g., `cors` npm package).  
-  - Remake the connection after updating the ngrok URL.
+- 🛑 *CORS or network errors in Expo?*
+  - Add `cors` middleware in backend.
+  - Restart Expo and ngrok if needed.
+
+---
+
+## 🔮 Future Enhancements
+
+- 🚀 Deploy backend to cloud (Heroku, AWS, etc.)
+- 🔐 Secure API with JWT authentication
+- 🛢️ Connect to database for persistent storage
+- 📱 Polish UI and improve accessibility support
+
 
 ---
 
 ## 🙏 Credits
 
-Project by **Subhash** – powered by React Native, Express.js, and ngrok magic. 🧰
+Made by **Subhash**
+Powered by **React Native**, **Express.js**, **ngrok**, and creativity ✨
