@@ -135,12 +135,6 @@ Every time you restart ngrok, follow these steps:
 
 ---
 
-## 📜 License
-
-Add your license (e.g. MIT) here.
-
----
-
 ## 🙏 Credits
 
 Project by **Subhash** – powered by React Native, Express.js, and ngrok magic. 🧰
